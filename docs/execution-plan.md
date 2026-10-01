@@ -22,7 +22,11 @@ that scene. Do not film a product that is not installed.
 
 DSM, the VM Service users VM, TuneD, Terraform plus Argo CD against
 VCF Automation, vDefend DFW, Antrea policy, SSP, Istio, OPA,
-Headlamp, a GPU tenancy, and the Metal Oracle chat service.
+Headlamp, and a GPU tenancy. The Metal Oracle source is in
+`NiranEC77/music-store-ai`: it calls `album_count`, `list_albums`,
+and `list_orders`, and the same tools are on `POST /mcp`. Cart,
+orders, and users source is in that repository too. The traffic
+generator source is still not.
 
 Videos 2, 3, and 4 are not written. Video 5 is an edit of films
 that do not exist.
@@ -31,10 +35,11 @@ that do not exist.
 
 ### 1. Put the application in this repository
 
-Copy the music-store manifests here as the "before" state. Keep
-the container database and the container users service. Label them
-as the starting point, not as DSM and not as a VM. The execution
-plan does not pretend the migration already happened.
+The container manifests are in `app/music-store/`. They are the
+starting point: a container database, not DSM, and a container
+users service, not a VM. The Oracle, cart, orders, and users
+source stays in `NiranEC77/music-store-ai`. This plan does not
+pretend the migration already happened.
 
 ### 2. Deploy that starting application on VKS
 
@@ -44,7 +49,8 @@ can be filmed before the gaps in section 3 are built.
 
 ### 3. Build the Metal Oracle as its own Tanzu app
 
-A new app. Not the company infrastructure agent.
+The chat service source is in `NiranEC77/music-store-ai`. It is a
+new app. Not the company infrastructure agent.
 
 - Private model. CPU is enough.
 - MCP tools that read inventory and orders from the store. The
